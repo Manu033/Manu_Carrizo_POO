@@ -8,7 +8,8 @@
 
 Login::Login(QWidget *parent) : QWidget(parent),
                                 ui(new Ui::Login),
-                                manager( new QNetworkAccessManager( this ) )
+                                manager( new QNetworkAccessManager( this ) ),
+                                managerClima (new QNetworkAccessManager( this ))
 
 {
     ui->setupUi(this);
@@ -19,7 +20,18 @@ Login::Login(QWidget *parent) : QWidget(parent),
     connect( manager, SIGNAL(finished(QNetworkReply*)),
              this, SLOT(slot_descargaFinalizada(QNetworkReply*)));
 
+   // connect(ui->pbIngresar, SIGNAL(pressed()), this, SLOT(slot_cargar_clima()));
+
+    connect(managerClima, SIGNAL(finished(QNetworkReply*)),
+            this, SLOT(slot_mostrar_clima(QNetworkReply*)));
+
+
+
     ui->leUsuario->setFocus();
+
+    //Armo solicitud para el ws
+    QString sUrl = "http://tusrutashoy.com.ar/api_manu/apiclima.php";
+    managerClima ->get( QNetworkRequest( QUrl( sUrl ) ) );
 
     ventana = new Ventana;
 }
@@ -27,6 +39,20 @@ Login::Login(QWidget *parent) : QWidget(parent),
 Login::~Login()
 {
     delete ui;
+}
+
+void Login::slot_cargar_clima(){
+    //Armo solicitud para el ws
+    QString sUrl = "http://tusrutashoy.com.ar/api_manu/apiclima.php";
+    manager ->get( QNetworkRequest( QUrl( sUrl ) ) );
+
+}
+
+void Login::slot_mostrar_clima( QNetworkReply * reply){
+    QByteArray clima = reply->readAll();
+    qDebug() <<clima;
+    this->setClima(clima);
+
 }
 
 void Login::slot_validar_con_API()  {
@@ -53,13 +79,13 @@ void Login::slot_descargaFinalizada( QNetworkReply * reply )  {
         ba = ba.replace( "::", " " );
         this->hide();
 
-        QFile file("../contenido.html");
+        QFile file("../php/contenido.html");
         file.open(QIODevice::ReadOnly | QIODevice::Text);
 
 
 
 
-        //ventana->setContenido( file.readAll() );
+        ventana->setContenido( file.readAll() );
         ventana->show();
 
     }else if( ba.contains( "!" ) ){
@@ -73,6 +99,11 @@ void Login::slot_descargaFinalizada( QNetworkReply * reply )  {
     }
 
 
+}
+
+void Login::setClima(QString contenido)
+{
+    ui->lClima->setText(contenido);
 }
 
 

@@ -1,4 +1,3 @@
-
 #ifndef LOGIN_H
 #define LOGIN_H
 
@@ -24,16 +23,21 @@ class Login : public QWidget
 public:
     Login(QWidget *parent = nullptr);
     ~Login();
+    void setClima( QString contenido );
 
 private:
     Ui::Login * ui;
     QNetworkAccessManager * manager;
+    QNetworkAccessManager * managerClima;
+
 
     Ventana * ventana;
 
 
 
 private slots:
+    void slot_cargar_clima();
+    void slot_mostrar_clima( QNetworkReply * reply);
     void slot_validar_con_API();
     void slot_descargaFinalizada( QNetworkReply * reply );
 };
