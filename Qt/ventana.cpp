@@ -16,4 +16,5 @@ Ventana::~Ventana()
 void Ventana::setContenido(QString contenido)
 {
     ui->te->setHtml( contenido );
+
 }

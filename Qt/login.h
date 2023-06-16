@@ -1,3 +1,4 @@
+
 #ifndef LOGIN_H
 #define LOGIN_H
 
@@ -8,8 +9,11 @@
 #include <QNetworkRequest>  // Contener la info que ira hacia el server
 #include <QNetworkReply>  // Contiene la info que viene desde el server
 #include <QUrl>
+#include <QPainter>
 
 #include "ventana.h"
+#include "admindb.h"
+#include "ventanameli.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Login; }
@@ -29,9 +33,14 @@ private:
     Ui::Login * ui;
     QNetworkAccessManager * manager;
     QNetworkAccessManager * managerClima;
+    QNetworkAccessManager * managerparaimagen;
 
+    //Para poner imagen de fondo
+    QImage imagenBackground;
+    bool imagenCargada;
 
-    Ventana * ventana;
+    AdminDB * adminDB;
+    VentanaMeli * ventanameli;
 
 
 
@@ -40,6 +49,13 @@ private slots:
     void slot_mostrar_clima( QNetworkReply * reply);
     void slot_validar_con_API();
     void slot_descargaFinalizada( QNetworkReply * reply );
+    void slot_recordar();
+
+protected:
+    void paintEvent(QPaintEvent *);
+
+private slots:
+    void slot_descargadeimagenFinalizada( QNetworkReply * reply );
 };
 
 #endif // LOGIN_H

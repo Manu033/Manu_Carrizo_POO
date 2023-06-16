@@ -19,6 +19,7 @@ public:
 
 private:
     Ui::Ventana *ui;
+
 };
 
 #endif // VENTANA_H

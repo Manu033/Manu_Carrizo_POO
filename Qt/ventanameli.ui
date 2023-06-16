@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>VentanaMeli</class>
+ <widget class="QWidget" name="VentanaMeli">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>626</width>
+    <height>755</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Busqueda MercadoLibre</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>logoMeli.png</normaloff>logoMeli.png</iconset>
+  </property>
+  <widget class="QLineEdit" name="leBuscar">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>40</y>
+     <width>371</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="placeholderText">
+    <string>Buscar productos, marcas y más...</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pbBuscar">
+   <property name="geometry">
+    <rect>
+     <x>440</x>
+     <y>40</y>
+     <width>91</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Buscar</string>
+   </property>
+  </widget>
+  <widget class="Producto" name="producto1" native="true">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>110</y>
+     <width>211</width>
+     <height>201</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="Producto" name="producto2" native="true">
+   <property name="geometry">
+    <rect>
+     <x>350</x>
+     <y>110</y>
+     <width>211</width>
+     <height>201</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="Producto" name="producto4" native="true">
+   <property name="geometry">
+    <rect>
+     <x>350</x>
+     <y>330</y>
+     <width>211</width>
+     <height>201</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="Producto" name="producto5" native="true">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>550</y>
+     <width>211</width>
+     <height>201</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="Producto" name="producto3" native="true">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>330</y>
+     <width>211</width>
+     <height>201</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="cod_usuario">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>800</x>
+     <y>50</y>
+     <width>151</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>COD_USUARIO</string>
+   </property>
+  </widget>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>Producto</class>
+   <extends>QWidget</extends>
+   <header>producto.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <tabstops>
+  <tabstop>leBuscar</tabstop>
+  <tabstop>pbBuscar</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+</ui>
